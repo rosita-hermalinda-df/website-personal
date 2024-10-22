@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('assets/img/portfolio/login-bg2.jpeg'); /* Ganti dengan path gambar latar belakang Anda */
+            background-size: cover; /* Agar gambar menutupi seluruh layar */
+            background-position: center; /* Agar gambar terletak di tengah */
+        }
+        /* Initially hide the background image */
+        #backgroundImage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+        /* Keep the background style of the login page */
+        #loginForm {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Mencegah reload halaman
+            const username = document.getElementById("name").value;
+            const password = document.getElementById("password").value;
+
+            // Validasi login
+            if (username === "rosita@gmail.com" && password === "123") {
+                document.getElementById("loginForm").style.display = "none"; // Sembunyikan form login
+                document.getElementById("backgroundImage").style.display = "block"; // Tampilkan foto sebagai background
+                document.getElementById("backgroundAudio").play(); // Memainkan audio setelah login berhasil
+            } else {
+                alert("Invalid username or password!");
+            }
+        }
+    </script>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <!-- Login Form Section -->
+    <div id="loginForm" class="w-full max-w-md mx-auto p-8">
+        <div class="flex justify-center mb-8">
+            <div class="bg-transparent p-4 rounded-lg">
+                <!-- Ganti URL gambar di sini -->
+                <img alt="Logo" class="w-16 h-16" src="assets/img/portfolio/login-bg2.jpeg" width="100" height="100"/>
+            </div>
+        </div>
+        <!-- Login Form -->
+        <div class="bg-transparent rounded-t-3xl p-8">
+            <h1 class="text-3xl font-semibold text-center mb-2 text-white">Login</h1>
+            <p class="text-center text-gray-500 mb-8">Sign in to continue.</p>
+            <form onsubmit="validateLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-500 text-sm font-semibold mb-2" for="name">NAME</label>
+                    <input class="w-full px-4 py-3 rounded-lg bg-gray-300 text-gray-700 focus:outline-none" id="name" name="name" type="text" />
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-500 text-sm font-semibold mb-2" for="password">PASSWORD</label>
+                    <input class="w-full px-4 py-3 rounded-lg bg-gray-300 text-gray-700 focus:outline-none" id="password" name="password" type="password" />
+                </div>
+                <button class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-700 transition duration-200">Log in</button>
+            </form>
+            <div class="text-center mt-6">
+                <a class="text-gray-500 text-sm" href="#">Forgot Password?</a>
+                <p class="text-gray-500 text-sm mt-2">Signup !</p>
+            </div>
+        </div>
+        <p class="text-center text-gray-500 text-sm mt-8">By Rosita Hermalinda Dwi Febrianti</p>
+    </div>
+
+    <!-- Image Background (Initially Hidden) -->
+    <img id="backgroundImage" src="assets/img/portfolio/login-success.jpg" alt="Success Background Image" />
+
+</body>
+</html>

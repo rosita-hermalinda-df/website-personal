@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      background-image: url('assets/img/portfolio/bg-kalkulator.jpg');
+      background-size: cover; /* Agar background menutupi seluruh layar */
+      background-position: center; /* Agar background terpusat */
+      background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+      height: 100vh; /* Tinggi penuh sesuai dengan viewport */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .calculator {
+      background-color: #1a1a1a; /* Warna hitam untuk background kalkulator */
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      width: 280px;
+    }
+
+    .display {
+      background-color: #333333; /* Latar belakang display lebih gelap */
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: right;
+      color: #00ffcc; /* Warna angka biru neon */
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 15px;
+    }
+
+    .button {
+      background-color: #333333; /* Warna tombol lebih gelap */
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      color: #00ffcc; /* Warna teks biru neon */
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s;
+    }
+
+    .button:hover {
+      background-color: #4d4d4d; /* Warna saat tombol di-hover */
+    }
+
+    .button:active {
+      background-color: #666666; /* Warna saat tombol ditekan */
+      transform: scale(0.95);
+    }
+
+    .operator {
+      background-color: #006666; /* Warna biru neon lebih gelap untuk operator */
+      color: #00ffcc;
+    }
+
+    .operator:hover {
+      background-color: #008080;
+    }
+
+    .equal {
+      grid-column: span 2;
+      background-color: #009999; /* Warna biru neon lebih terang untuk tombol equals */
+      color: white;
+    }
+
+    .equal:hover {
+      background-color: #00cccc;
+    }
+
+    .equal:active {
+      background-color: #00e6e6;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display"></div>
+    <div class="buttons">
+      <button class="button operator" id="clear">C</button>
+      <button class="button operator" id="divide">/</button>
+      <button class="button operator" id="multiply">*</button>
+      <button class="button operator" id="subtract">-</button>
+      <button class="button" id="seven">7</button>
+      <button class="button" id="eight">8</button>
+      <button class="button" id="nine">9</button>
+      <button class="button operator" id="add">+</button>
+      <button class="button" id="four">4</button>
+      <button class="button" id="five">5</button>
+      <button class="button" id="six">6</button>
+      <button class="button" id="one">1</button>
+      <button class="button" id="two">2</button>
+      <button class="button" id="three">3</button>
+      <button class="button equal" id="equals">=</button>
+      <button class="button" id="zero">0</button>
+      <button class="button" id="decimal">.</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+    let buttons = document.querySelectorAll('.button');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        let buttonText = button.textContent;
+        switch (buttonText) {
+          case 'C':
+            display.textContent = '';
+            break;
+          case '=':
+            try {
+              display.textContent = eval(display.textContent);
+            } catch (error) {
+              display.textContent = 'Error';
+            }
+            break;
+          default:
+            display.textContent += buttonText;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
